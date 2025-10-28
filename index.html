@@ -24,8 +24,30 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     />
     <link rel="stylesheet" href="/src/style.css" />
+    <script defer src="./src/main.js"></script>
   </head>
   <body>
+    <div class="overlay hidden"></div>
+
+    <div class="modal hidden">
+      <header class="modal__header">
+        <h2 class="modal__title">Subscription Confirmed 🎉</h2>
+        <span class="modal-close" aria-label="Close modal">&times;</span>
+      </header>
+
+      <div class="modal__body">
+        <p>
+          Thank you for subscribing! You’re now part of our community. Keep an
+          eye on your inbox — we’ll be sending you exciting updates, insights,
+          and special offers soon.
+        </p>
+      </div>
+
+      <footer class="modal__footer">
+        <button type="button" class="btn btn--close">Close</button>
+      </footer>
+    </div>
+
     <main class="main">
       <img src="/images/logo.svg" alt="logo" class="logo" />
       <h1 class="heading">We are launching <span>soon!</span></h1>
@@ -37,7 +59,8 @@
           id="email-input"
           placeholder="example@email.com"
         />
-        <button type="button" class="btn">Notify Me</button>
+        <button type="button" class="btn btn--notify">Notify Me</button>
+        <p class="error"></p>
       </form>
       <img
         src="./images/illustration-dashboard.png"
@@ -45,7 +68,7 @@
         class="illustration"
       />
     </main>
-    <footer>
+    <footer class="footer">
       <div class="social-icons">
         <div class="icon">
           <i class="fab fa-facebook-f"></i>

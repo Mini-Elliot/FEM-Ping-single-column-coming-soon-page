@@ -141,6 +141,7 @@
     }
 
     .form {
+        position: relative;
         margin-top: 2.5rem;
 
         @media (width < 660px) {
@@ -176,19 +177,16 @@
 
     }
 
-    .btn {
-        font-size: var(--fs-button);
-        font-weight: var(--fw-bold);
-        padding: 1.125rem 3.875rem;
-        border-radius: 100vw;
-        background: var(--primary);
-        color: #ffffff;
-        border: none;
-        cursor: pointer;
-        box-shadow: 0 5px 5px hsl(from var(--primary) h s l / 0.25);
+    .error {
+        top: 110%;
+        left: 25%;
+        position: absolute;
+        font-size: var(--fs-error);
+        color: var(--secondary-200);
 
-        @media (width< 990px) {
-            padding: 0.8125rem 2.1875rem;
+        @media (width < 660px) {
+            left: 50%;
+            transform: translateX(-50%);
         }
     }
 
@@ -209,7 +207,8 @@
         letter-spacing: 1px;
     }
 
-    footer {
+
+    .footer {
         margin-bottom: 2.5rem;
 
         @media (width > 990px) {
@@ -245,8 +244,153 @@
         }
 
         &:hover {
-            color: #fff;
+            color: #ffffff;
             background-color: var(--primary);
         }
     }
+}
+
+@layer buttons {
+    .btn {
+        font-size: var(--fs-button);
+        font-weight: var(--fw-bold);
+        padding: 1.125rem 3.875rem;
+        border-radius: 100vw;
+        background: var(--primary);
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 5px 5px hsl(from var(--button-box-shadow, var(--primary)) h s l / 0.25);
+
+        @media (width< 990px) {
+            padding: 0.8125rem 2.1875rem;
+        }
+    }
+
+    .btn--close {
+        background: var(--secondary-200);
+        padding: 0.5rem 3.875rem;
+        --button-box-shadow: var(--secondary-200);
+    }
+
+}
+
+@layer utilities {
+    .hidden {
+        display: none;
+    }
+}
+
+@layer modal {
+    .modal {
+        z-index: 10;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: min(90%, 500px);
+        background: #fff;
+        border-radius: 1rem;
+        box-shadow: 0 10px 40px hsl(from var(--neutral-grey) h s l / 0.25);
+        overflow: hidden;
+        animation: fadeIn 0.3s ease-out;
+    }
+
+    /* HEADER */
+    .modal__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--secondary-200);
+        background: hsl(from var(--primary) h s 97%);
+    }
+
+    .modal__header h2 {
+        font-size: 1.25rem;
+        color: var(--neutral-blue);
+        font-weight: var(--fw-bold);
+        margin: 0;
+    }
+
+    .modal__header>span {
+        font-size: 1.25rem;
+        cursor: pointer;
+        color: var(--neutral-grey);
+        transition: color 0.2s ease;
+    }
+
+    .modal__header>span:hover {
+        color: var(--secondary-200);
+    }
+
+    /* BODY */
+    .modal__body {
+        padding: 2rem 1.5rem;
+        font-size: var(--fs-body);
+        color: var(--neutral-blue);
+        line-height: 1.6;
+    }
+
+    /* FOOTER */
+    .modal__footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        border-top: 1px solid var(--secondary-200);
+        padding: 1rem 1.5rem;
+        background: hsl(from var(--primary) h s 98%);
+    }
+
+    /* Buttons inside footer */
+    .modal__footer button {
+        font-size: var(--fs-button);
+        font-weight: var(--fw-semibold);
+        border: none;
+        border-radius: 100vw;
+        cursor: pointer;
+        padding: 0.6rem 1.5rem;
+        transition: background 0.2s ease;
+    }
+
+    .modal__footer .btn--confirm {
+        background: var(--primary);
+        color: #fff;
+    }
+
+    .modal__footer .btn--confirm:hover {
+        background: hsl(from var(--primary) h s l / 0.85);
+    }
+
+    .modal__footer .btn--close {
+        background: var(--secondary-200);
+        color: #fff;
+    }
+
+    .modal__footer .btn--close:hover {
+        background: hsl(from var(--secondary-200) h s l / 0.85);
+    }
+
+    /* Overlay */
+    .overlay {
+        z-index: 5;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(4px);
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translate(-50%, -48%);
+        }
+
+        to {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+    }
+
 }
